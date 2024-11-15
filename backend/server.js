@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const app = express();
 
 dotenv.config();
@@ -31,7 +32,9 @@ const Blog = mongoose.model("Blog", blogSchema);
 app.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
   try {
-    const blog = await Blog.create({ username, email, password });
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const blog = await Blog.create({ username, email, password: hashPassword });
     res.status(200).json({ message: "sign up successfull" });
   } catch (error) {
     res.status(400).json({ message: error });
@@ -41,8 +44,13 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const blog = await Blog.findOne({ email, password });
+    const blog = await Blog.findOne({ email });
     if (!blog) return res.status(400).json({ message: "wrong credentials" });
+
+    const compare = await bcrypt.compare(password, blog.password);
+
+    if (!compare) return res.status(400).json({ message: "wrong password" });
+
     res.status(200).json({ message: "login successfull" });
   } catch (error) {
     res.status(400).json({ message: error });
