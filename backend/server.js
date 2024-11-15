@@ -22,7 +22,7 @@ mongoose
   });
 
 const blogSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  name: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
@@ -30,11 +30,11 @@ const blogSchema = new mongoose.Schema({
 const Blog = mongoose.model("Blog", blogSchema);
 
 app.post("/signup", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { name, email, password } = req.body;
   try {
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const blog = await Blog.create({ username, email, password: hashPassword });
+    const blog = await Blog.create({ name, email, password: hashPassword });
     res.status(200).json({ message: "sign up successfull" });
   } catch (error) {
     res.status(400).json({ message: error });
