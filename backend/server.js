@@ -29,6 +29,15 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model("Blog", blogSchema);
 
+app.get("/", async (req, res) => {
+  try {
+    const blog = await Blog.find();
+    res.status(200).json({ message: blog });
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
+
 app.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
   try {
