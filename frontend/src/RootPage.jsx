@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, Button, Container, Row, Col } from "react-bootstrap";
 import { ReactTyped } from "react-typed";
+import LoginModal from "./LoginModal"; // Import LoginModal
+import SignUpModal from "./SignUpModal"; // Import SignUpModal
 
 function RootPage() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+
+  // Handle Login Modal
+  const handleLoginShow = () => setShowLogin(true);
+  const handleLoginClose = () => setShowLogin(false);
+
+  // Handle Sign Up Modal
+  const handleSignupShow = () => setShowSignup(true);
+  const handleSignupClose = () => setShowSignup(false);
+
   return (
     <div>
       {/* Navbar */}
@@ -32,10 +45,16 @@ function RootPage() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Button variant="outline-light" className="me-2">
+              <Button
+                variant="outline-light"
+                className="me-2"
+                onClick={handleLoginShow}
+              >
                 Login
               </Button>
-              <Button variant="light">Logout</Button>
+              <Button variant="light" onClick={handleSignupShow}>
+                Sign Up
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -79,7 +98,17 @@ function RootPage() {
             />
           </Col>
         </Row>
-        {/* Features Section */}
+      </Container>
+
+      {/* Modals */}
+      <LoginModal showLogin={showLogin} handleLoginClose={handleLoginClose} />
+      <SignUpModal
+        showSignup={showSignup}
+        handleSignupClose={handleSignupClose}
+      />
+
+      {/* Features Section */}
+      <Container>
         <Row className="mt-5">
           <Col>
             <h2 className="fw-bold text-secondary">What You Can Explore</h2>
