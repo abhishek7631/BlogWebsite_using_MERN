@@ -28,7 +28,7 @@ function RootPage() {
       >
         <Container>
           <Navbar.Brand
-            href="#home"
+            href="/"
             style={{
               fontFamily: "Arial, sans-serif",
               fontWeight: "bold",
