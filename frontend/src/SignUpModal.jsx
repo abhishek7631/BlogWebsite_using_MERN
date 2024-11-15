@@ -24,9 +24,11 @@ function SignUpModal({ showSignup, handleSignupClose }) {
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="w-100">
-            Sign Up
-          </Button>
+          <div className="d-flex justify-content-center mt-4">
+            <Button variant="primary" type="submit">
+              Sign up
+            </Button>
+          </div>
         </Form>
       </Modal.Body>
     </Modal>

@@ -19,9 +19,11 @@ function LoginModal({ showLogin, handleLoginClose }) {
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="w-100">
-            Log In
-          </Button>
+          <div className="d-flex justify-content-center mt-4">
+            <Button variant="primary" type="submit">
+              Log In
+            </Button>
+          </div>
         </Form>
       </Modal.Body>
     </Modal>
