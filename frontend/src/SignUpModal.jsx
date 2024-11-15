@@ -10,8 +10,8 @@ function SignUpModal({ showSignup, handleSignupClose }) {
       <Modal.Body>
         <Form>
           <Form.Group className="mb-3" controlId="signupName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter your name" />
+            <Form.Label>User Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter your username" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="signupEmail">

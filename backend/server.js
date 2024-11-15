@@ -1,0 +1,54 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const app = express();
+
+dotenv.config();
+
+app.use(express.json());
+app.use(cors());
+
+const port = process.env.port;
+
+mongoose
+  .connect("mongodb://localhost:27017/UKblog")
+  .then(() => {
+    console.log("Database is connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+const blogSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+});
+
+const Blog = mongoose.model("Blog", blogSchema);
+
+app.post("/signup", async (req, res) => {
+  const { username, email, password } = req.body;
+  try {
+    const blog = await Blog.create({ username, email, password });
+    res.status(200).json({ message: "sign up successfull" });
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const blog = await Blog.findOne({ email, password });
+    if (!blog) return res.status(400).json({ message: "wrong credentials" });
+    res.status(200).json({ message: "login successfull" });
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`server is running at ${port}`);
+});
