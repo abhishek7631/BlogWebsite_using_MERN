@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Modal, Form, Button } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUpModal({ showSignup, handleSignupClose }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +18,8 @@ function SignUpModal({ showSignup, handleSignupClose }) {
       .post("http://localhost:3300/signup", { name, email, password })
       .then((res) => {
         console.log(res);
-        handleSignupClose();
+        toast.success("Signup successful!");
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
