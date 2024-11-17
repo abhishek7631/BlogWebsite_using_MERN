@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { Modal, Form, Button } from "react-bootstrap";
 
 function SignUpModal({ showSignup, handleSignupClose }) {
@@ -8,20 +7,18 @@ function SignUpModal({ showSignup, handleSignupClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:3300/signup", { name, email, password })
       .then((res) => {
         console.log(res);
-        navigate("/");
+        handleSignupClose();
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   return (
     <Modal show={showSignup} onHide={handleSignupClose}>
