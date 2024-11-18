@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 function BlogPage() {
   return (
-    <Container className="my-5">
-      <h1 className="text-center mb-4">Our Blog</h1>
+    <Container className="my-4">
+      <h1 className="text-center mb-4 bg-dark text-white py-2 rounded rounded-5">
+        Our Blog
+      </h1>
       <Row className="g-4">
         {blog.map((post) => (
           <Col key={post.id} md={6} lg={4}>
