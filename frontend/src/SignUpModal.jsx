@@ -18,8 +18,8 @@ function SignUpModal({ showSignup, handleSignupClose }) {
       .post("http://localhost:3300/signup", { name, email, password })
       .then((res) => {
         console.log(res);
-        toast.success("Signup successful!");
         navigate("/login");
+        toast.success("Signup successful!");
       })
       .catch((err) => {
         console.log(err);
