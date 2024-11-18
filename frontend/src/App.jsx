@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<RootPage></RootPage>}></Route>
           <Route path="/signup" element={<RootPage></RootPage>} />
           <Route path="/login" element={<BlogPage></BlogPage>}></Route>
-          <Route path="/iblog" element={<Iblog></Iblog>}></Route>
+          <Route path="/blog/:id" element={<Iblog></Iblog>} />
         </Routes>
       </BrowserRouter>
       <Footer></Footer>

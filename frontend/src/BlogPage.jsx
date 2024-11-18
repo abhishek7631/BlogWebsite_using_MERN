@@ -2,6 +2,7 @@ import React from "react";
 import blog from "./Data";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function BlogPage() {
   return (
@@ -24,6 +25,12 @@ function BlogPage() {
 }
 
 function BlogCard({ id, name, image, description }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/blog/${id}`);
+  };
+
   return (
     <Card className="shadow-sm h-100">
       <Card.Img
@@ -35,12 +42,11 @@ function BlogCard({ id, name, image, description }) {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{description.slice(0, 100)}...</Card.Text>
-        <Link to={`/blog/${id}`}>
-          <Button variant="primary">Learn More</Button>
-        </Link>
+        <Button variant="primary" onClick={handleClick}>
+          Know More
+        </Button>
       </Card.Body>
     </Card>
   );
 }
-
 export default BlogPage;
