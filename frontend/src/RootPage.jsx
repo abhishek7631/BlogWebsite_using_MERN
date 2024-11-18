@@ -86,7 +86,12 @@ function RootPage() {
               breathtaking destinations, thrilling activities, and cultural
               treasures—all in one place.
             </p>
-            <Button variant="success" size="lg" className="mt-4">
+            <Button
+              variant="success"
+              size="lg"
+              className="mt-4"
+              onClick={handleSignupShow}
+            >
               Start Your Journey 🚀
             </Button>
           </Col>

@@ -9,7 +9,7 @@ import {
 
 function Footer() {
   return (
-    <footer className="bg-dark text-light py-4">
+    <footer className="bg-dark text-light py-4 mt-4">
       <Container>
         <Row className="text-center">
           {/* About Section */}
